@@ -17,6 +17,9 @@
 	img {
 		width: 4%;
 		margin: 0.5rem 1rem;
+		&:hover {
+			cursor: pointer;
+		}
 	}
 }
 </style>
