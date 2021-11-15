@@ -20,7 +20,7 @@ export default {
 @import "../assets/scss/variables.scss";
 
 .contentMain {
-	height: auto;
+	height: 100vh;
 	background-color: $main_backgroundColor;
 	margin: 0 auto;
 }
