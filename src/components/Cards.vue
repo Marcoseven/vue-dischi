@@ -6,7 +6,7 @@
 					<img :src="card.poster" alt="" />
 					<h2>{{ card.title }}</h2>
 					<div>
-						<h2>{{ card.author }}</h2>
+						<h4>{{ card.author }}</h4>
 						<h4>{{ card.year }}</h4>
 					</div>
 				</div>
@@ -23,7 +23,7 @@ export default {
 		return {
 			cards: [],
 			loading: true,
-			API_URL: "https://api.sampleapis.com/rickandmorty/characters",
+			API_URL: "https://flynn.boolean.careers/exercises/api/array/music",
 		};
 	},
 	mounted() {
@@ -35,7 +35,7 @@ export default {
 				.get(this.API_URL)
 				.then((r) => {
 					console.log(r.data);
-					this.cards = r.data;
+					this.cards = r.data.response;
 					this.loading = false;
 				})
 				.catch((e) => {
@@ -55,14 +55,35 @@ export default {
 	margin: auto !important;
 	justify-content: center;
 	text-align: center;
+	padding-top: 3rem;
 	.col-2 {
 		height: auto;
 		padding: 0.5rem !important;
 		border: none;
+		&:hover {
+			cursor: pointer;
+		}
 		.card {
-			height: 100px;
+			height: 100%;
 			background-color: $header_mainCard_backgroundColor !important;
-			border: none !important;
+			img {
+				padding: 0.5rem;
+			}
+			h2 {
+				margin: 0.5rem !important;
+				font-size: 18px;
+				color: #fff;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+			h4 {
+				font-size: 15px;
+				color: #fff;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
 		}
 	}
 }
