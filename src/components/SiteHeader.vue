@@ -1,14 +1,12 @@
 <template>
 	<div class="container">
-		<div class="contentHeader w-75">
+		<div class="contentHeader">
 			<img src="../assets/img/spotify-logo.svg" alt="logo Spotify" />
 		</div>
 	</div>
 </template>
 
-<script>
-export default {};
-</script>
+<script></script>
 
 <style lang="scss">
 @import "../assets/scss/variables.scss";
