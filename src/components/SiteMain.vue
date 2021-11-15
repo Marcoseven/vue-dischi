@@ -1,9 +1,27 @@
 <template>
-	<div></div>
+	<div class="container">
+		<div class="contentMain">
+			<Cards />
+		</div>
+	</div>
 </template>
 
 <script>
-export default{}
+import Cards from "./Cards.vue";
+
+export default {
+	components: {
+		Cards,
+	},
+};
 </script>
 
-<style></style>
+<style lang="scss">
+@import "../assets/scss/variables.scss";
+
+.contentMain {
+	height: auto;
+	background-color: $main_backgroundColor;
+	margin: 0 auto;
+}
+</style>
