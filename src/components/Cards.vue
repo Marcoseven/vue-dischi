@@ -1,10 +1,11 @@
 <template>
-	<div>
+	<div class="cards">
+		<SearchBox @search-genre="filteredGenre" :cards="cards" />
 		<div class="row" v-if="!loading">
-			<div class="col-2" v-for="card in cards" :key="card.title">
-				<div class="card">
-					<img :src="card.poster" alt="" />
-					<h2>{{ card.title }}</h2>
+			<div class="col-2" v-for="card in getGenre" :key="card.title">
+				<div class="card text-center">
+					<img :src="card.poster" :alt="card.author" />
+					<h2>{{ card.title.toUpperCase() }}</h2>
 					<div>
 						<h4>{{ card.author }}</h4>
 						<h4>{{ card.year }}</h4>
@@ -17,14 +18,20 @@
 </template>
 
 <script>
+import SearchBox from "./SearchBox.vue";
 import axios from "axios";
 export default {
 	data() {
 		return {
 			cards: [],
 			loading: true,
+			error: "",
 			API_URL: "https://flynn.boolean.careers/exercises/api/array/music",
+			searchText: "",
 		};
+	},
+	components: {
+		SearchBox,
 	},
 	mounted() {
 		setTimeout(this.callApi, 1000);
@@ -43,12 +50,31 @@ export default {
 					this.error = `'OPS!' ${e}`;
 				});
 		},
+		filteredGenre(text) {
+			this.searchText = text;
+		},
 	},
+	computed: {
+			getGenre() {
+				if (this.searchText === "All") {
+					return this.cards;
+				} else {
+					const filtered = this.cards.filter((card) => {
+						return card.genre.includes(this.searchText);
+					});
+					return filtered;
+				}
+			},
+		},
 };
 </script>
 
 <style lang="scss">
 @import "../assets/scss/variables.scss";
+
+.cards {
+	text-align: center;
+}
 
 .row {
 	width: 100%;
@@ -89,6 +115,7 @@ export default {
 }
 
 .loading {
+	margin: 1rem;
 	color: #fff;
 }
 </style>
